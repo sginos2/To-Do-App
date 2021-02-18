@@ -1,3 +1,40 @@
 body {
     background-color: #dadfea;
 }
+
+nav {
+    padding: 20px;
+    background-color: #415A77;
+    color: white;
+}
+
+a {
+    color: white;
+}
+
+i {
+    margin: 5px;
+}
+
+.container-fluid {
+    margin-top: 20px;
+}
+
+.list-group-item {
+    padding-left: 5px;
+}
+
+input {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-width: 1px;
+}
+
+button {
+    border-radius: 5px;
+    border-width: 1px;
+}
+
+.col-8 {
+    border-left: 2px solid white;
+}
