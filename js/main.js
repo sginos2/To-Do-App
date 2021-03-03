@@ -34,6 +34,7 @@ function selectCurrentList(listId) {
     currentList = lists[listId];
     print();
 };
+
 /*data models
 class User {
     constructor(id, lists){
