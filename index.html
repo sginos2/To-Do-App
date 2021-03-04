@@ -28,20 +28,16 @@
                   <button id="new-list-button">Create List</button>
               </div>
               <div>
-                <ul id="lists" class="list-group">
-                  <li class="list-group-item"><i class="fas fa-minus-circle"></i> Cras justo odio</li>
-                  <li class="list-group-item"><i class="fas fa-minus-circle"></i> Dapibus ac facilisis in</li>
-                  <li class="list-group-item"><i class="fas fa-minus-circle"></i> Morbi leo risus</li>
-                </ul>
+                <ul id="lists" class="list-group"></ul>
               </div>
             </div>
             <div class="col-8">
               <div>
                 <h2 id="current-list-name">Cras justo odio</h2>
               </div>
+              <input id="newItem" type="text" placeholder="New To-Do">
+              <button id="addItem">Add</button>
               <div id="list-window" class="list-window">
-                <input id="newItem" type="text" placeholder="New To-Do">
-                <button id="addItem">Add</button>
                 <ul class="list-group">
                   <li class="list-group-item"><i class="fas fa-minus-circle"></i> Walk the dog</li>
                   <li class="list-group-item"><i class="fas fa-minus-circle"></i> Fix the faucet</li>
@@ -54,6 +50,7 @@
        </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <script src="./js/utils.js"></script>
+    <script src="./js/todos.js"></script>
     <script src="./js/list.js"></script>
     <script src="./js/main.js"></script>
   </body>

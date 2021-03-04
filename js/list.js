@@ -1,8 +1,8 @@
 class List {
-    constructor(name, listContents = []) {
+    constructor(name, todos = []) {
         this.id = Utils.getNewId('list-');
         this.name = name;
-        this.listContents = listContents;
+        this.todos = todos;
     }
     addTodo(todo) {
         this.todos.push(todo);

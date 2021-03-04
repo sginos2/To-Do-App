@@ -1,4 +1,5 @@
 const lists = {};
+const todos = [];
 let currentList;
 
 //dummy data
@@ -7,6 +8,12 @@ lists[list.id] = list;
 currentList = list;
 
 document.getElementById('new-list-button').addEventListener('click', addNewList);
+document.getElementById('new-list-input').addEventListener('keydown', (event) => {
+    if (event.key =='Enter') {
+        addNewList();
+    }
+});
+document.getElementById('addItem').addEventListener('click', addNewTodo);
 
 print();
 
@@ -17,6 +24,19 @@ function print() {
     });
     document.getElementById('lists').innerHTML = listsHtml;
     document.getElementById('current-list-name').innerText = currentList.name;
+    let listWindowHtml = '';
+    currentList.todos.forEach(todo => {
+        listWindowHtml += `
+            <div class="todo">
+                <ul class="list-group">
+                    <li class="list-group-item">${todo.text}<i class="fas fa-minus-circle"></li>
+                </ul>
+            </div>
+        `;
+    });
+    document.getElementById('list-window').innerHTML = listWindowHtml;
+    
+    
 };
 
 function addNewList() {
@@ -34,6 +54,17 @@ function selectCurrentList(listId) {
     currentList = lists[listId];
     print();
 };
+
+function addNewTodo() {
+    const text = document.getElementById('newItem').value;
+    if (text) {
+        let newId = Utils.getNewId('todo-');
+        const newTodo = new Todo(text, false);
+        todos[newTodo.id] = newTodo;
+        document.getElementById('newItem').value = '';
+        print();
+    };
+}
 
 /*data models
 class User {
