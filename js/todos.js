@@ -1,13 +1,7 @@
 class Todo {
-    constructor(text, completed) {
+    constructor(text, completed = false) {
         this.id = Utils.getNewId('todo-');
         this.text = text;
-        this.completed = false;
-    }
-    markAsCompleted() {
-        
-    }
-    edit(text) {
-        
+        this.completed = completed;
     }
 };
