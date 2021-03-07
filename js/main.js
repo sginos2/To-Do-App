@@ -1,4 +1,4 @@
-const lists = {};
+let lists = retrieve();
 let currentList;
 
 //dummy data
@@ -41,13 +41,15 @@ function print() {
         document.getElementById('current-list-name').innerText = currentList.name;
 
         let listWindowHtml = '';
+        var index = 0;
         currentList.todos.forEach(todo => {
             listWindowHtml += `
             <li class="list-group-item">
                 <i id="remove-todo" class="fas fa-minus-circle" onclick="removeTodo('${todo.id}')"></i>
                 <span id="todo-text" ondblclick="displayTodoEditTextbox('${todo.text}', '${todo.id}')">${todo.text}</span> 
-                <input id="checkbox" type="checkbox">
+                <input id="checkbox-${index}" type="checkbox" onclick="toggleCompleted('${todo.id}')">
             </li>`;
+            index++;
         });
     
         document.getElementById('currentTodos').innerHTML = listWindowHtml; 
@@ -62,6 +64,7 @@ function addNewList() {
         document.getElementById('new-list-input').value = '';
         document.getElementById('error-message').innerText = "";
         print();
+        save();
     };
 };
 
@@ -70,11 +73,13 @@ function removeList(listId) {
     currentList = undefined;
     document.getElementById('current-list-name').innerText = "";
     print();
+    save();
 }
 
 function selectCurrentList(listId) {
     currentList = lists[listId];
     print();
+    save();
 };
 
 function addNewTodo() {
@@ -89,11 +94,12 @@ function addNewTodo() {
         }
         document.getElementById('newItem').value = '';
         print();
+        save();
     };
 }
 
 function removeTodo(todoId) {
-    for (let i = 0; i <= currentList.todos.length; i++)
+    for (let i = 0; i < currentList.todos.length; i++)
     {
         if(currentList.todos[i].id === todoId)
         {
@@ -102,6 +108,7 @@ function removeTodo(todoId) {
         }
     }
     print();
+    save();
 }
 
 function displayTodoEditTextbox(text, todoId) {
@@ -121,30 +128,41 @@ function editTodo(todoId) {
         currentList.todos[index].text = text;
     }
     print();
+    save();
 }
 
-function markAsCompleted(completed) {
-    this.completed = completed;
+function toggleCompleted(todoId) {
+    for (let i = 0; i < currentList.todos.length; i++) {
+        if (currentList.todos[i].id === todoId) {
+            if (document.getElementById("checkbox-".concat(i)).checked) {
+                currentList.todos[i].completed = true;
+            } else {
+                currentList.todos[i].completed = false;
+            }
+        }
+    }
 }
 
 function clearCompletedTodos() {
-    //on button click, clear all completed todos
-    //if todo completed = true, then remove it
-    todos.forEach((todo) => {
-        if (todo.completed == true) {
-            //remove todo
+    for (let i = 0; i < currentList.todos.length; i++) {
+        if (currentList.todos[i].completed) {
+            currentList.todos.splice(i, 1);
         }
-    })
-    //loop through todos 
+    }
+    print();
+    save();
 }
 
-/* todo functions:
-markAsCompleted(completed) {
-    this.completed = completed;
+function save() {
+    // save the lists object
+    localStorage.setItem('lists', JSON.stringify(lists));
+    // localStorage.setItem('currentChat', JSON.stringify(currentChat));
 }
-edit(text) {}
 
-list functions:
-removeTodo(todoId) {}
-clearCompletedTodos() {} */
-
+function retrieve() {
+    const retrievedLists = JSON.parse(localStorage.getItem('lists'));
+    if (retrievedLists) {
+      return retrievedLists;
+    }
+    return {};
+  }

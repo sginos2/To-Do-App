@@ -15,6 +15,19 @@
         <span class="navbar-brand mb-0 h1"><i class="fas fa-clipboard-check"></i> To-Do App</span>
       </nav>
         <div class="container-fluid">
+          <div class="info">
+            <p>Instructions: First, create a new list by typing its name into the "New List"
+              input box and clicking "Create List" or hitting the Enter key.
+              Click on the newly created list's name to be taken to the new list. 
+              Once inside the new list, type your to-do item in the "New To-Do" input
+              box and click "Add" or hit the Enter key to submit it. To edit a to-do item, 
+              double-click on the item's name, edit the text as desired, and hit the Enter key to submit.
+              To mark a to-do item as completed, click the checkbox to the right of the item. 
+              To remove a list or a to-do item, click the minus symbol to the left of the list
+              or to-do item's name. To remove all completed to-do items, click the "Clear Completed
+              To-Dos" button.
+            </p>
+          </div>
           <div class="row">
             <div class="col-3">
               <div>
@@ -35,7 +48,7 @@
               <div>
                 <input id="newItem" type="text" placeholder="New To-Do">
                 <button id="addItem">Add</button>
-                <button id="clear-completed">Clear Completed To-Dos</button>
+                <button id="clear-completed" onclick="clearCompletedTodos()">Clear Completed To-Dos</button>
               </div>
               <div id="error-message"></div>
               <div>
